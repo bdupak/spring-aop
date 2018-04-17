@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+            http://www.springframework.org/schema/beans/spring-beans.xsd
+            http://www.springframework.org/schema/aop
+            http://www.springframework.org/schema/aop/spring-aop-4.0.xsd">
+
+    <!-- Enable AspectJ style of Spring AOP -->
+    <aop:aspectj-autoproxy />
+
+    <bean name="car" class="com.epam.model.Car">
+        <property name="name" value="Mersedes" />
+    </bean>
+    <bean name="carService" class="com.epam.service.CarService">
+        <property name="car" ref="car" />
+    </bean>
+
+    <bean name="aspect" class="com.epam.aspect.Aspects" />
+    <bean name="annotationAspect" class="com.epam.aspect.AnnotationAspect" />
+    <!--<bean name="xmlConfigAspect" class="com.epam.aspect.XmlConfigAspect" />-->
+
+    <!-- Spring AOP XML Configuration -->
+    <!--<aop:config>-->
+        <!--<aop:aspect ref="xmlConfigAspect" id="xmlConfigAspectID" order="1">-->
+            <!--<aop:pointcut expression="execution(* com.epam.model.Car.getName())" id="getNamePointcut"/>-->
+            <!--<aop:around method="aroundAdvice" pointcut-ref="getNamePointcut" arg-names="proceedingJoinPoint"/>-->
+        <!--</aop:aspect>-->
+    <!--</aop:config>-->
+</beans>
